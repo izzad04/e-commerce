@@ -64,6 +64,35 @@ if (ctxBar) {
   });
 }
 
+const ctxTop = document.getElementById("topSellingChart");
+if (ctxTop) {
+  new Chart(ctxTop, {
+    type: "bar",
+    data: {
+      labels: ["iPhone 14", "Running Shoes", "T-Shirt", "Laptop", "Headphones"],
+      datasets: [{
+        label: "Units Sold",
+        data: [15, 10, 25, 8, 12],
+        backgroundColor: "rgba(255, 99, 132, 0.7)",
+        borderColor: "#000",
+        borderWidth: 1
+      }]
+    },
+    options: {
+      indexAxis: "y", // horizontal bar
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: "Top-Selling Products" }
+      },
+      scales: {
+        x: { beginAtZero: true }
+      }
+    }
+  });
+}
+
+
 // ADD ITEM FUNCTIONS
 function addProduct() {
   const table = document.getElementById("productsTable").getElementsByTagName('tbody')[0];
