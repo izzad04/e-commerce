@@ -1,4 +1,11 @@
-// Simple client-side logic for prototype. Uses localStorage for persistence.
+/* FILE: script.js */
+function viewProduct(id){ const p = products.find(x=>x.id===id); alert(`${p.name}
+
+
+Price: RM${p.price.toFixed(2)}
+
+
+Prototype product page.`); }
 
 
 function addToCart(id){ cart[id] = (cart[id]||0)+1; sessionStorage.setItem('sm_cart', JSON.stringify(cart)); updateCartUI(); }
