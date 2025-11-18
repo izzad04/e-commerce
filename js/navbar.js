@@ -24,3 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "index.html";
   });
 });
+
+// Show modal when logout clicked
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  const logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+  logoutModal.show();
+});
+
+// Confirm logout in modal
+document.getElementById("confirmLogoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "index.html";
+});
