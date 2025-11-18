@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   document.getElementById("navbar").innerHTML = navbar;
 
-  // Logout logic
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("loggedIn");
     window.location.href = "index.html";
