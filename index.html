@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - E-Commerce App</title>
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .login-box {
+      width: 350px;
+    }
+    #categoryChartBox {
+      width: 400px;
+      margin: 40px auto;
+    }
+  </style>
 </head>
+<body class="d-flex flex-column align-items-center justify-content-center vh-100">
 
-<body class="d-flex align-items-center justify-content-center vh-100">
-
+  <!-- Login Box -->
   <div class="login-box p-4 shadow bg-white rounded">
     <h3 class="text-center mb-4">Login</h3>
 
@@ -19,6 +33,65 @@
     <button onclick="login()" class="btn btn-primary w-100">Login</button>
   </div>
 
-<script src="js/script.js"></script>
+  <!-- Chart Box -->
+  <div id="categoryChartBox">
+    <canvas id="categoryChart"></canvas>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // LOGIN FUNCTION
+    function login() {
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+
+      if (user === "admin" && pass === "123") {
+        window.location.href = "dashboard.html";
+      } else {
+        document.getElementById("loginError").classList.remove("d-none");
+      }
+    }
+
+    // Hide error when typing
+    document.getElementById("username").addEventListener("input", hideError);
+    document.getElementById("password").addEventListener("input", hideError);
+
+    function hideError() {
+      document.getElementById("loginError").classList.add("d-none");
+    }
+
+    // CHART
+    const ctx = document.getElementById("categoryChart");
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Electronics', 'Fashion', 'Sports', 'Beauty', 'Home'],
+          datasets: [{
+            data: [8, 10, 4, 2, 1],
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.7)',
+              'rgba(255, 99, 132, 0.7)',
+              'rgba(255, 206, 86, 0.7)',
+              'rgba(75, 192, 192, 0.7)',
+              'rgba(153, 102, 255, 0.7)'
+            ],
+            borderColor: 'rgba(255, 255, 255, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
