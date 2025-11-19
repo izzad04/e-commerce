@@ -1,12 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+// footer.js
+document.addEventListener("DOMContentLoaded", () => {
   const footerHTML = `
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-      <div class="container">
-        &copy; 2025 E-Commerce App. All rights reserved.
-        <br>
-        Developed by: Sharlin & Izzad
-      </div>
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+      &copy; 2025 E-Commerce App. All rights reserved.
     </footer>
   `;
-  document.getElementById("footer").innerHTML = footerHTML;
+  document.body.insertAdjacentHTML("beforeend", footerHTML);
 });
