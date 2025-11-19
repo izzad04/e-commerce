@@ -1,23 +1,15 @@
-// ===== PRODUCTS =====
 const products = [
-  { name: "iPhone 14", price: 4499, stock: 12, category: "Electronics" },
-  { name: "Laptop", price: 3500, stock: 8, category: "Electronics" },
-  { name: "Headphones", price: 299, stock: 15, category: "Electronics" },
-  { name: "T-Shirt", price: 35, stock: 30, category: "Fashion" },
-  { name: "Jeans", price: 120, stock: 25, category: "Fashion" },
-  { name: "Running Shoes", price: 199, stock: 20, category: "Sports" },
-  { name: "Soccer Ball", price: 50, stock: 18, category: "Sports" },
-  { name: "Lipstick", price: 25, stock: 12, category: "Beauty" },
-  { name: "Perfume", price: 150, stock: 10, category: "Beauty" },
-  { name: "Sofa", price: 1200, stock: 5, category: "Home" },
-  { name: "Lamp", price: 80, stock: 8, category: "Home" }
+  { name: "iPhone 14", price: 4499, stock: 12, category: "Electronics", sold: 15 },
+  { name: "Running Shoes", price: 199, stock: 20, category: "Sports", sold: 10 },
+  { name: "T-Shirt", price: 35, stock: 30, category: "Fashion", sold: 25 },
+  { name: "Laptop", price: 3200, stock: 8, category: "Electronics", sold: 8 },
+  { name: "Headphones", price: 250, stock: 15, category: "Electronics", sold: 12 },
 ];
 
-// ===== CATEGORIES =====
 const categories = [
-  { name: "Electronics" },
-  { name: "Fashion" },
-  { name: "Sports" },
-  { name: "Beauty" },
-  { name: "Home" }
+  { name: "Electronics", totalProducts: 3, status: "Active" },
+  { name: "Fashion", totalProducts: 1, status: "Active" },
+  { name: "Sports", totalProducts: 1, status: "Low Stock" },
+  { name: "Beauty", totalProducts: 0, status: "Active" },
+  { name: "Home", totalProducts: 0, status: "Active" },
 ];

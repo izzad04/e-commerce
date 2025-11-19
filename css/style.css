@@ -1,37 +1,30 @@
-/* General body styling */
-body {
-    min-height: 100vh;
+html, body {
+    height: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
 
-/* Main content should take remaining space */
 .container {
     flex: 1;
 }
 
-/* Login box styling */
+/* Footer styling */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+}
+
+/* Login box */
 .login-box {
     width: 350px;
 }
 
-/* Footer styling */
-footer {
-    background-color: #343a40; /* Bootstrap dark */
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: auto; /* Push to bottom */
-    width: 100%;
-}
-
-/* Table styling overrides (optional) */
+/* Tables */
 table th, table td {
     text-align: center;
     vertical-align: middle;
-}
-
-/* Button spacing */
-button {
-    margin-bottom: 10px;
 }
