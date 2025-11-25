@@ -32,14 +32,14 @@ const products = [
     id: 5,
     name: "Jeans",
     category: "Men Clothing",
-    image: "images/jeans.jpg",
+    image: "images/hodie.jpg",
     stock: 8
   },
   {
     id: 6,
-    name: "Hijab Shawl",
-    category: "Women Clothing",
-    image: "images/hijab.jpg",
+    name: "Sneakers",
+    category: "Footwear",
+    image: "images/shoes_brown.jpg",
     stock: 4   // LOW STOCK
   }
 ];
