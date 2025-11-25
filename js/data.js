@@ -1,15 +1,53 @@
+// FASHION PRODUCT DATA
 const products = [
-  { name: "iPhone 14", price: 4499, stock: 12, category: "Electronics", sold: 15 },
-  { name: "Running Shoes", price: 199, stock: 20, category: "Sports", sold: 10 },
-  { name: "T-Shirt", price: 35, stock: 30, category: "Fashion", sold: 25 },
-  { name: "Laptop", price: 3200, stock: 8, category: "Electronics", sold: 8 },
-  { name: "Headphones", price: 250, stock: 15, category: "Electronics", sold: 12 },
+  {
+    id: 1,
+    name: "Men's T-Shirt",
+    category: "Men Clothing",
+    image: "images/mens_tshirt.jpg",
+    stock: 10
+  },
+  {
+    id: 2,
+    name: "Women's Blouse",
+    category: "Women Clothing",
+    image: "images/women_blouse.jpg",
+    stock: 3   // LOW STOCK
+  },
+  {
+    id: 3,
+    name: "Sneakers",
+    category: "Footwear",
+    image: "images/sneakers.jpg",
+    stock: 6
+  },
+  {
+    id: 4,
+    name: "Handbag",
+    category: "Accessories",
+    image: "images/handbag.jpg",
+    stock: 2   // LOW STOCK
+  },
+  {
+    id: 5,
+    name: "Jeans",
+    category: "Men Clothing",
+    image: "images/jeans.jpg",
+    stock: 8
+  },
+  {
+    id: 6,
+    name: "Hijab Shawl",
+    category: "Women Clothing",
+    image: "images/hijab.jpg",
+    stock: 4   // LOW STOCK
+  }
 ];
 
+// FASHION CATEGORIES
 const categories = [
-  { name: "Electronics", totalProducts: 3, status: "Active" },
-  { name: "Fashion", totalProducts: 1, status: "Active" },
-  { name: "Sports", totalProducts: 1, status: "Low Stock" },
-  { name: "Beauty", totalProducts: 0, status: "Active" },
-  { name: "Home", totalProducts: 0, status: "Active" },
+  { id: 1, name: "Men Clothing" },
+  { id: 2, name: "Women Clothing" },
+  { id: 3, name: "Footwear" },
+  { id: 4, name: "Accessories" }
 ];
