@@ -1,60 +1,34 @@
 window.onload = function () {
-  const prodSelect = document.getElementById("saleProduct");
-  const salesBody = document.getElementById("salesTableBody");
 
-  // Load products into dropdown
-  products.forEach(p => {
-    const op = document.createElement("option");
-    op.value = p.name;
-    op.textContent = p.name;
-    prodSelect.appendChild(op);
-  });
+  // ---- 1. Display table ----
+  const table = document.getElementById("salesTable");
 
-  const sales = [];
-
-  document.getElementById("addSaleBtn").onclick = function () {
-    const product = prodSelect.value;
-    const qty = parseInt(document.getElementById("saleQty").value);
-    const date = document.getElementById("saleDate").value;
-
-    if (!qty || qty < 1 || !date) {
-      alert("Please complete all fields.");
-      return;
-    }
-
-    // Save Sale
-    sales.push({ product, qty, date });
-
-    // Add to table
-    const row = `
+  sales.forEach(s => {
+    table.innerHTML += `
       <tr>
-        <td>${product}</td>
-        <td>${qty}</td>
-        <td>${date}</td>
+        <td>${s.date}</td>
+        <td>${s.product}</td>
+        <td>${s.qty}</td>
+        <td>RM ${s.total.toFixed(2)}</td>
       </tr>
     `;
-    salesBody.innerHTML += row;
+  });
 
-    updateChart(sales);
-  };
+  // ---- 2. Prepare chart data ----
+  const dates = sales.map(s => s.date);
+  const totals = sales.map(s => s.total);
 
-  // Chart.js
-  let chart;
-  function updateChart(data) {
-    const labels = data.map(x => x.product);
-    const values = data.map(x => x.qty);
+  // ---- 3. Create Chart ----
+  new Chart(document.getElementById("salesChart"), {
+    type: "bar",
+    data: {
+      labels: dates,
+      datasets: [{
+        label: "Total Sales (RM)",
+        data: totals,
+        borderWidth: 2
+      }]
+    }
+  });
 
-    if (chart) chart.destroy();
-
-    chart = new Chart(document.getElementById("salesChart"), {
-      type: "bar",
-      data: {
-        labels: labels,
-        datasets: [{
-          label: "Quantity Sold",
-          data: values
-        }]
-      }
-    });
-  }
 };
