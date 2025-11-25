@@ -18,7 +18,7 @@ const products = [
     id: 3,
     name: "Sneakers",
     category: "Footwear",
-    image: "images/sneakers.jpg",
+    image: "images/sneakersnb.jpg",
     stock: 6
   },
   {
