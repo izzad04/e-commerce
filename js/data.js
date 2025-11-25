@@ -41,6 +41,13 @@ const products = [
     category: "Footwear",
     image: "images/shoes_brown.jpg",
     stock: 4   // LOW STOCK
+  },
+  {
+    id: 7,
+    name: "Sneakers",
+    category: "Mean Clothing",
+    image: "images/mens_jacket.jpg",
+    stock: 4   // LOW STOCK
   }
 ];
 
