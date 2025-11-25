@@ -47,7 +47,7 @@ const products = [
     name: "Sneakers",
     category: "Mean Clothing",
     image: "images/mens_jacket.jpg",
-    stock: 4   // LOW STOCK
+    stock: 0   // LOW STOCK
   }
 ];
 
