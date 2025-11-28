@@ -5,6 +5,19 @@ html, body {
     flex-direction: column;
 }
 
+body {
+  background: #f0f2f5;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 380px;
+}
+
+input, button {
+  height: 45px;
+}
+
 .container {
     flex: 1;
 }
