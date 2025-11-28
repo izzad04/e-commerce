@@ -48,6 +48,20 @@ const products = [
     category: "Mean Clothing",
     image: "images/mens_jacket.jpg",
     stock: 0   // LOW STOCK
+  },
+  {
+    id: 8,
+    name: "Spectacles",
+    category: "Accessories",
+    image: "images/cermin_mata.jpg",
+    stock: 5   // LOW STOCK
+  },
+  {
+    id: 9,
+    name: "Chain",
+    category: "Accessories",
+    image: "images/rantai.jpg",
+    stock: 0   // LOW STOCK
   }
 ];
 
