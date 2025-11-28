@@ -22,6 +22,10 @@ input, button {
     flex: 1;
 }
 
+.navbar {
+    background-color: #000;
+}
+
 /* Footer styling */
 footer {
     background-color: #343a40;
