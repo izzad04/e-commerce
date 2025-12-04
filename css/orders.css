@@ -1,0 +1,271 @@
+/* ===========================
+   1. GLOBAL & RESET
+   =========================== */
+body {
+  overflow-x: hidden;
+  background-color: #f5f7fa;
+  color: #121212;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===========================
+   2. SIDEBAR STYLES
+   =========================== */
+.custom-sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.custom-sidebar.show-desktop,
+.custom-sidebar.show-mobile { 
+  transform: translateX(0); 
+}
+
+.sidebar-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: inherit;
+}
+
+.sidebar-menu {
+  overflow-y: auto;
+  flex-grow: 1;
+  scrollbar-width: none;
+}
+.sidebar-menu::-webkit-scrollbar { display: none; }
+
+.menu-item { 
+  cursor: pointer; 
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.menu-item:hover { background-color: #e9ecef; }
+
+.sidebar-profile {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem;
+  background-color: inherit;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: none;
+}
+.sidebar-overlay.show { display: block; }
+
+/* ===========================
+   3. LAYOUT (THE OVERFLOW FIX)
+   =========================== */
+#topNavbar, #mainContent { 
+  margin-left: 0;
+  width: 100%;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+#topNavbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#mainContent { padding: 20px; }
+
+/* DESKTOP PUSH */
+@media (min-width: 768px) {
+  #topNavbar.pushed,
+  #mainContent.pushed {
+    margin-left: 260px;
+    width: calc(100% - 260px); 
+  }
+}
+
+/* MOBILE OVERLAY */
+@media (max-width: 767.98px) {
+  #topNavbar.pushed,
+  #mainContent.pushed {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* ===========================
+   4. CARDS & UI
+   =========================== */
+.card { 
+  margin-bottom: 20px; 
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+  color: #121212;
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ===========================
+   5. DARK MODE STYLES
+   =========================== */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Main Components */
+body.dark-mode .custom-sidebar,
+body.dark-mode #topNavbar,
+body.dark-mode .card,
+body.dark-mode .modal-content {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0;
+  border-color: #333 !important;
+}
+
+body.dark-mode .sidebar-header,
+body.dark-mode .sidebar-profile,
+body.dark-mode .card-header {
+  border-color: #333 !important;
+}
+
+/* Text Colors */
+body.dark-mode { color: #a0a0a0 !important; }
+body.dark-mode .text-muted { color: #a0a0a0 !important; }
+body.dark-mode .text-dark { color: #e0e0e0 !important; }
+body.dark-mode .text-decoration-none { color: #e0e0e0 !important; }
+
+/* Inputs */
+body.dark-mode .form-select, 
+body.dark-mode .form-control,
+body.dark-mode .input-group-text {
+  background-color: #2c2c2c;
+  border-color: #444;
+  color: #fff;
+}
+
+/* Menu States */
+body.dark-mode .menu-item { color: #e0e0e0; }
+body.dark-mode .menu-item:hover { background-color: #2c2c2c; }
+
+/* Active Menu Item override */
+body.dark-mode .fw-bold.bg-white {
+  background-color: #2c2c2c !important; 
+  color: #fff !important;
+}
+
+/* ===========================
+   6. ORDERS PAGE SPECIFIC
+   =========================== */
+
+/* Table Light Mode Defaults */
+.table th { font-weight: 600; color: #555; }
+.table td { vertical-align: middle; }
+
+/* Status Badges (Light Mode) */
+.badge-pending { background-color: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 20px; font-size: 0.85rem; }
+.badge-shipped { background-color: #cff4fc; color: #055160; padding: 5px 10px; border-radius: 20px; font-size: 0.85rem; }
+.badge-delivered { background-color: #d1e7dd; color: #0f5132; padding: 5px 10px; border-radius: 20px; font-size: 0.85rem; }
+.badge-cancelled { background-color: #f8d7da; color: #842029; padding: 5px 10px; border-radius: 20px; font-size: 0.85rem; }
+
+/* DARK MODE TABLE OVERRIDES */
+body.dark-mode .table {
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+body.dark-mode .table thead {
+    background-color: #2c2c2c; /* Slightly lighter than card bg */
+    color: #fff;
+}
+/* Force Bootstrap table headers to transparent so our colors show */
+body.dark-mode .table thead th {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark-mode .table tbody td {
+    border-color: #333;
+    color: #a0a0a0;
+}
+
+body.dark-mode .table-hover tbody tr:hover td {
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+/* DARK MODE BADGES */
+body.dark-mode .badge-pending { background-color: #53450d; color: #ffd700; }
+body.dark-mode .badge-shipped { background-color: #084152; color: #4dd0e1; }
+body.dark-mode .badge-delivered { background-color: #0b4626; color: #81c784; }
+body.dark-mode .badge-cancelled { background-color: #5c181d; color: #ef9a9a; }
+
+/* ===========================
+   FOOTER STYLES
+   =========================== */
+.main-footer {
+    background-color: var(--bg-sidebar); /* Matches the sidebar color */
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+/* Footer Links */
+.footer-link {
+    text-decoration: none;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+    opacity: 1;
+    color: #0d6efd; /* Bootstrap Primary Blue */
+    padding-left: 5px; /* Slight movement effect */
+}
+
+/* Social Buttons */
+.main-footer .btn-outline-secondary {
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.main-footer .btn-outline-secondary:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+
+/* Dark Mode Specific Adjustments */
+[data-bs-theme="dark"] .main-footer .text-muted {
+    color: #a0a0a0 !important;
+}

@@ -72,3 +72,15 @@ const categories = [
   { id: 3, name: "Footwear" },
   { id: 4, name: "Accessories" }
 ];
+
+// 1. Weekly Revenue Data (Monday to Sunday)
+const revenueData = {
+  days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  amounts: [1200, 1900, 1500, 2100, 1800, 2500, 2300]
+};
+
+// 2. Order Status Data
+const orderStats = {
+  labels: ['Delivered', 'Pending', 'Cancelled'],
+  counts: [45, 15, 5] // 45 Delivered, 15 Pending, 5 Cancelled
+};

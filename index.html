@@ -3,105 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <title>Login - ShopEase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- BOOTSTRAP -->
+  <!-- FAVICON -->
+  <link rel="icon" href="images/logoshop.jpg" type="image/jpeg">
+
+  <!-- GOOGLE FONTS (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- BOOTSTRAP 5 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
+  <!-- BOOTSTRAP ICONS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-  <!-- CUSTOM STYLE -->
-  <style>
-    body {
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    .login-box {
-      width: 380px;
-      background: #ffffff;
-      padding: 35px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .login-logo img {
-      width: 85px;
-      height: 85px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .btn-login {
-      padding: 10px;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
-    .input-group-text {
-      cursor: pointer;
-    }
-
-    a:hover {
-      text-decoration: underline !important;
-    }
-  </style>
+  <!-- YOUR NEW CSS FILE -->
+  <link rel="stylesheet" href="css/login.css">
 </head>
 
-<body class="d-flex flex-column align-items-center justify-content-center">
+<body>
 
-  <div class="login-box">
+  <div class="container-fluid g-0">
+    <div class="row g-0 h-100vh">
+      
+      <!-- LEFT SIDE: IMAGE & BRANDING -->
+      <div class="col-lg-6 d-none d-lg-flex flex-column align-items-center justify-content-center text-white p-5 position-relative login-sidebar">
+        <!-- Overlay for darker image -->
+        <div class="bg-overlay"></div>
+        
+        <div class="position-relative text-center z-1">
+          <img src="images/logoshop.jpg" alt="Logo" class="rounded-circle mb-4 shadow" width="100">
+          <h1 class="fw-bold mb-3 display-5">ShopEase Admin</h1>
+          <p class="lead opacity-75">Manage your orders, inventory, and sales<br>all in one place.</p>
+        </div>
+      </div>
 
-    <!-- LOGO -->
-    <div class="login-logo text-center mb-3">
-      <img src="images/logoshop.jpg" alt="ShopEase Logo">
+      <!-- RIGHT SIDE: LOGIN FORM -->
+      <div class="col-lg-6 d-flex align-items-center justify-content-center bg-white">
+        <div class="login-form-container">
+          
+          <!-- MOBILE LOGO (Visible only on small screens) -->
+          <div class="text-center d-lg-none mb-4">
+            <img src="images/logoshop.jpg" alt="Logo" class="rounded-circle" width="60">
+            <h3 class="fw-bold mt-2">ShopEase</h3>
+          </div>
+
+          <h2 class="fw-bold mb-2 text-dark">Welcome Back!</h2>
+          <p class="text-muted mb-4">Please enter your details to sign in.</p>
+
+          <!-- ERROR MESSAGE -->
+          <div id="loginError" class="alert alert-danger d-none d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-2"></i>
+            <div>Invalid username or password</div>
+          </div>
+
+          <form onsubmit="event.preventDefault(); login();">
+            
+            <!-- USERNAME (With Value) -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Username</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-person"></i></span>
+                <!-- PRE-FILLED VALUE HERE -->
+                <input type="text" id="username" class="form-control bg-light border-start-0" placeholder="Enter username" value="admin">
+              </div>
+            </div>
+
+            <!-- PASSWORD (With Value) -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Password</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-lock"></i></span>
+                <!-- PRE-FILLED VALUE HERE -->
+                <input type="password" id="password" class="form-control bg-light border-start-0 border-end-0" placeholder="Enter password" value="123">
+                <span class="input-group-text bg-light border-start-0 cursor-pointer" onclick="togglePassword()">
+                  <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                <label class="form-check-label text-muted small" for="rememberMe">Remember me</label>
+              </div>
+              <a href="#" class="text-decoration-none text-primary fw-semibold small">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm">Sign In</button>
+          </form>
+
+          <p class="text-center text-muted mt-5 small">
+            © 2025 ShopEase. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+
     </div>
-
-    <!-- TITLE -->
-    <h3 class="text-center mb-4" style="font-weight: 700;">Welcome Back</h3>
-
-    <!-- ERROR MESSAGE -->
-    <div id="loginError" class="alert alert-danger d-none"></div>
-
-    <!-- USERNAME -->
-    <input id="username" class="form-control mb-3" placeholder="Username">
-
-    <!-- PASSWORD WITH TOGGLE -->
-    <div class="input-group mb-3">
-      <input id="password" type="password" class="form-control" placeholder="Password">
-      <span class="input-group-text" onclick="togglePassword()">
-        👁
-      </span>
-    </div>
-
-    <!-- LOGIN BUTTON -->
-    <button onclick="login()" class="btn btn-primary w-100 btn-login">
-      Login
-    </button>
-
-    <p class="text-center mt-3">
-      <a href="#" class="text-decoration-none">Forgot password?</a>
-    </p>
-
   </div>
 
-  <!-- FOOTER -->
-  <footer class="text-center mt-4 text-muted">
-    <small>© 2025 ShopEase. All Rights Reserved.</small>
-  </footer>
-
-  <!-- LOGIN SCRIPT -->
+  <!-- SCRIPTS -->
   <script src="js/script.js"></script>
-
   <script>
     function togglePassword() {
-      const input = document.getElementById("password");
-      input.type = input.type === "password" ? "text" : "password";
+      const passInput = document.getElementById("password");
+      const icon = document.getElementById("toggleIcon");
+      if (passInput.type === "password") {
+        passInput.type = "text";
+        icon.classList.replace("bi-eye-slash", "bi-eye");
+      } else {
+        passInput.type = "password";
+        icon.classList.replace("bi-eye", "bi-eye-slash");
+      }
     }
   </script>
 

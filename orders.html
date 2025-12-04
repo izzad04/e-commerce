@@ -1,55 +1,273 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orders — ShopMate</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Orders - ShopEase</title>
+
+  <link rel="icon" href="images/logoshop.jpg" type="image/jpeg">
+
+  <!-- META TAGS FOR SEO -->
+  <meta name="keywords" content="ShopEase, Admin Dashboard, E-commerce, Order Management, Sales Tracker, Inventory Control, Business Reports, Shop Management System">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Streamline your business with ShopEase. A comprehensive admin dashboard to manage orders, track sales performance, handle products, and view detailed analytics.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  
+  <!-- YOUR UPDATED CSS -->
+  <link rel="stylesheet" href="css/orders.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark">
-<div class="container">
-<a class="navbar-brand fw-bold" href="index.html">ShopMate</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navMain">
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-<li class="nav-item"><a class="nav-link active" href="orders.html">Orders</a></li>
-<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-</ul>
+
+<!-- SIDEBAR -->
+<div id="customSidebar" class="custom-sidebar">
+  <div class="sidebar-header">
+    <span class="fw-bold fs-5">ShopEase</span>
+    <button id="closeSidebar" class="btn btn-sm btn-outline-danger d-md-none">
+      <i class="bi bi-x"></i>
+    </button>
+  </div>
+  
+  <div class="sidebar-menu">
+    <a href="dashboard.html" class="menu-item">
+      <span class="d-flex align-items-center"><i class="bi bi-speedometer2 me-2"></i>Dashboard</span>
+    </a>
+
+    <a href="products.html" class="menu-item">
+      <span class="d-flex align-items-center"><i class="bi bi-box-seam me-2"></i>Products</span>
+    </a>
+
+    <!-- ACTIVE ITEM: Kept bg-white so CSS can override it in dark mode -->
+    <div class="menu-item fw-bold bg-white" onclick="window.location.href='orders.html'">
+      <span class="d-flex align-items-center"><i class="bi bi-card-checklist me-2"></i>Orders</span>
+    </div>
+
+    <div class="menu-item" data-menu="orders">
+        <a href="sales.html" class="text-decoration-none text-dark d-flex align-items-center">
+          <i class="bi bi-graph-up-arrow me-2"></i>sales
+        </a>
+    </div>
+  
+  </div>
+
+  <div class="sidebar-profile">
+    <!-- Added onclick and pointer cursor style here -->
+    <div class="d-flex align-items-center" onclick="window.location.href='profile.html'" style="cursor: pointer;">
+      <i class="bi bi-person-circle me-2 fs-4"></i>
+      <div>
+        <div><strong>Admin</strong></div>
+        <small class="text-muted">View Profile</small>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline-secondary btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">
+      <i class="bi bi-box-arrow-right me-1"></i> Logout
+    </button>
+  </div>
 </div>
-</div>
+
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<!-- NAVBAR -->
+<nav id="topNavbar" class="navbar navbar-expand-lg sticky-top shadow-sm">
+  <div class="container-fluid">
+    <button id="toggleSidebarMobile" class="btn btn-sm border-0 d-inline-block d-md-none"><i class="bi bi-list fs-4"></i></button>
+    <button id="toggleSidebarDesktop" class="btn btn-sm border-0 d-none d-md-inline-block"><i class="bi bi-list fs-4"></i></button>
+    
+    <h4 class="ms-2 mt-1 mb-0">Order Management</h4>
+    
+    <div class="ms-auto d-flex align-items-center gap-2">
+      <!-- DARK MODE BUTTON -->
+      <button id="toggleDarkModeBtn" class="btn btn-secondary rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+        <i class="bi bi-moon-fill" id="darkModeIcon"></i>
+      </button>
+
+      <button class="btn btn-secondary rounded-circle d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+        <i class="bi bi-bell"></i>
+      </button>
+      <img src="images/logoshop.jpg" alt="Profile" width="40" height="40" class="rounded-circle">
+    </div>
+  </div>
 </nav>
 
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="container-fluid p-4">
 
-<main class="container my-4">
-<h2 class="h4">Orders</h2>
-<p class="small text-muted">Orders are stored locally for this prototype.</p>
+  <!-- Stats Row -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <div class="card p-3 h-100">
+        <div class="text-muted small">Total Orders</div>
+        <div class="fs-4 fw-bold">1,245</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 h-100">
+        <div class="text-muted small">Pending</div>
+        <div class="fs-4 fw-bold text-warning">15</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 h-100">
+        <div class="text-muted small">Completed</div>
+        <div class="fs-4 fw-bold text-success">1,180</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3 h-100">
+        <div class="text-muted small">Revenue</div>
+        <div class="fs-4 fw-bold text-primary">RM 45,200</div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Search & Filter -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+    <div class="input-group" style="max-width: 300px;">
+      <span class="input-group-text border-end-0"><i class="bi bi-search"></i></span>
+      <input type="text" id="orderSearch" class="form-control border-start-0" placeholder="Search orders...">
+    </div>
+    <div class="d-flex gap-2">
+      <select class="form-select w-auto">
+        <option value="all">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="shipped">Shipped</option>
+      </select>
+      <button class="btn btn-primary"><i class="bi bi-download"></i> Export</button>
+    </div>
+  </div>
 
-<div class="table-responsive">
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Order #</th>
-<th>Customer</th>
-<th>Items</th>
-<th>Total (RM)</th>
-<th>Date</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody id="ordersTable"></tbody>
-</table>
+  <!-- Table -->
+  <div class="card">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th class="ps-3">Order ID</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th class="text-end pe-3">Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <!-- JS Injection -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===========================
+       FOOTER SECTION
+       =========================== -->
+  <footer class="main-footer mt-5 pt-5">
+    <div class="container-fluid">
+      <div class="row g-4">
+        
+        <!-- COLUMN 1: BRAND & INFO -->
+        <div class="col-lg-4 col-md-6">
+          <div class="d-flex align-items-center mb-3">
+            <img src="images/logoshop.jpg" alt="Logo" width="40" height="40" class="rounded-circle me-2">
+            <span class="fw-bold fs-5">ShopEase</span>
+          </div>
+          <p class="text-muted small mb-3">
+            ShopEase is your all-in-one solution for managing e-commerce inventory, 
+            tracking orders, and analyzing sales performance in real-time.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: QUICK LINKS -->
+        <div class="col-lg-2 col-md-6">
+          <h6 class="fw-bold mb-3">Quick Links</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="dashboard.html" class="footer-link">Dashboard</a></li>
+            <li><a href="orders.html" class="footer-link">Orders</a></li>
+            <li><a href="products.html" class="footer-link">Products</a></li>
+            <li><a href="reports.html" class="footer-link">Analytics</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: SUPPORT -->
+        <div class="col-lg-2 col-md-6">
+          <h6 class="fw-bold mb-3">Support</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Account Settings</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 4: CONTACT INFO -->
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold mb-3">Contact Us</h6>
+          <ul class="list-unstyled d-flex flex-column gap-3">
+            <li class="d-flex align-items-start text-muted small">
+              <i class="bi bi-geo-alt-fill me-2 fs-6 text-primary"></i>
+              <span>Level 5, Menara ShopEase, <br>50450 Kuala Lumpur, Malaysia</span>
+            </li>
+            <li class="d-flex align-items-center text-muted small">
+              <i class="bi bi-envelope-fill me-2 fs-6 text-primary"></i>
+              <span>support@shopease.com</span>
+            </li>
+            <li class="d-flex align-items-center text-muted small">
+              <i class="bi bi-telephone-fill me-2 fs-6 text-primary"></i>
+              <span>+60 3-1234 5678</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM COPYRIGHT -->
+      <div class="border-top mt-5 pt-3 pb-3">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <small class="text-muted">&copy; 2025 ShopEase. All rights reserved.</small>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <small class="text-muted">Designed by Admin Team</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
-</main>
 
+<!-- Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Logout</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">Are you sure you want to log out?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-danger" id="confirmLogoutBtn">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
-<script src="js/footer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/orders.js"></script>
 </body>
 </html>

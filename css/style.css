@@ -1,125 +1,187 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+body {
+  overflow-x: hidden;
+
 }
 
-.login-box {
-  width: 100%;
-  max-width: 380px;
+/* nav button */
+.toggle-me {
+  transition: margin-left 0.3s ease;
+  padding: 1rem;
 }
 
-input, button {
-  height: 45px;
+.toggle-me.pushed {
+  margin-left: 300px;
 }
 
-.container {
-    flex: 1;
+.main-content {
+  transition: margin-left 0.3s ease;
+  padding: 1rem;
 }
 
-.navbar {
-    background-color: #000;
+.custom-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 300px;
+  /* background-color: #f8f9fa; */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1040;
+  overflow-y: auto;
 }
 
-/* Footer styling */
-footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    width: 100%;
+.custom-sidebar.show-desktop,
+.custom-sidebar.show-mobile {
+  transform: translateX(0);
 }
 
-/* Login box */
-.login-box {
-    width: 350px;
+/* Desktop push */
+.main-content.pushed {
+  margin-left: 300px;
 }
 
-/* Tables */
-table th, table td {
-    text-align: center;
-    vertical-align: middle;
+/* Mobile push — translate instead of margin */
+@media (max-width: 767.98px) {
+  .main-content.pushed {
+    margin-left: 0 !important;
+    transform: translateX(300px);
+    transition: transform 0.3s ease;
+  }
 }
 
-/* -------- PRODUCT PAGE -------- */
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 25px;
-  padding: 20px 40px;
+.sidebar-header {
+  padding: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.product-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: 0.3s;
+.menu-item {
   cursor: pointer;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 1.5rem;
+  /* background-color: #e9ecef; */
 }
 
-.product-img {
-  width: 100%;
-  height: 250px;
-  position: relative;
-  background: #f8f8f8;
+.submenu.show {
+  max-height: 500px;
 }
 
-.product-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.caret-icon {
+  transition: transform 0.3s ease;
 }
 
-.low-stock {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: orange;
-  color: #fff;
-  padding: 2px 6px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  border-radius: 3px;
+.caret-icon.rotate {
+  transform: rotate(180deg);
 }
 
-.out-of-stock {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: red;
-  color: #fff;
-  padding: 2px 6px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  border-radius: 3px;
+.submenu-item {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #f1f3f5; */
 }
 
-
-.product-info {
-  padding: 15px;
+.submenu-nested {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 1.5rem;
+  /* background-color: #dee2e6; */
 }
 
-.product-info h3 {
-  font-size: 18px;
-  margin-bottom: 5px;
-  font-weight: 600;
+.submenu-nested.show {
+  max-height: 300px;
 }
 
-.product-category {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px;
+/* Overlay for mobile */
+/* Overlay that covers page when sidebar is open on mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1035;
+  /* Less than sidebar's z-index (1040) */
 }
 
-.product-stock {
-  font-size: 14px;
-  color: #111;
+/* Show overlay */
+.sidebar-overlay.show {
+  display: block;
+}
+
+/* Animate the sidebar */
+.custom-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 300px;
+  /* background-color: #f8f9fa; */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1040;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-menu {
+  overflow-y: auto;
+}
+
+/* Animate main content shift on mobile */
+@media (max-width: 767.98px) {
+  .main-content.pushed {
+    transform: translateX(300px);
+    transition: transform 0.3s ease;
+  }
+}
+
+.sidebar-profile {
+  border-top: 1px solid #dee2e6;
+  /* background: #f8f9fa; */
+}
+
+/* Hide scrollbar but allow scrolling */
+.sidebar-menu {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+
+.sidebar-menu::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
+}
+
+.sidebar-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* background-color: #f8f9fa; */
+  /* Match sidebar background */
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.sidebar-menu.scrolling .sidebar-header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
